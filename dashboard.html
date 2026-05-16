@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard - LoL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LEAGUE <span>OF LEGENDS</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="inventario.html">Inventario</a></li>
+      <li><a href="perfil.html">Campeón</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="eventos.html">Eventos</a></li>
+      <li><a href="reservas.html">Reservas</a></li>
+      <li><a href="historial.html">Historial</a></li>
+      <li><a href="configuracion.html">Config</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">Dashboard de <b>Métricas</b></h1>
+    <p class="page-sub">— Estadísticas Globales del Invocador —</p>
+
+    <div class="stats-grid">
+      <div class="stat"><div class="label">Campeones</div><div class="value">168</div><div class="delta">+2 este mes</div></div>
+      <div class="stat"><div class="label">Partidas Jugadas</div><div class="value">1.247</div><div class="delta">+45 esta semana</div></div>
+      <div class="stat"><div class="label">Win Rate</div><div class="value">58%</div><div class="delta">+3% vs anterior</div></div>
+      <div class="stat"><div class="label">Maestría Total</div><div class="value">12.4M</div><div class="delta down">-1% vs pico</div></div>
+    </div>
+
+    <div class="dash-row">
+      <div class="card">
+        <h3 style="color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:14px;margin-bottom:18px">Partidas por mes</h3>
+        <div class="bars" id="bars"></div>
+      </div>
+
+      <div class="card">
+        <h3 style="color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:14px;margin-bottom:18px">Roles más usados</h3>
+        <ul class="role-list" id="roles"></ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="card">
+      <h3 style="color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:14px;margin-bottom:18px">Campeón más popular</h3>
+      <div class="champ-popular">
+        <div class="ico">Y</div>
+        <div>
+          <div style="font-size:24px;color:var(--gold-2);letter-spacing:3px;text-transform:uppercase">Yasuo</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:4px">El Imperdonable · Mid Lane · 312 partidas · 61% WR</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2025 — Dashboard de Métricas LoL</footer>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

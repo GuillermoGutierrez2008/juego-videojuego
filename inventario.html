@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Inventario - LoL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+    .chip{padding:8px 18px;border:1px solid var(--gold-dark);color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;background:transparent;font-family:inherit;transition:.2s}
+    .chip:hover,.chip.on{background:var(--gold-dark);color:var(--gold-2)}
+    .item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+    .item{padding:20px;background:linear-gradient(180deg,#0a1c2e,#091428);border:1px solid var(--gold-dark);transition:.2s;cursor:pointer}
+    .item:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 8px 20px rgba(0,0,0,.5)}
+    .item-img{width:64px;height:64px;background:linear-gradient(135deg,var(--gold-dark),var(--blue));display:grid;place-items:center;font-size:28px;color:var(--gold-2);font-weight:800;border:2px solid var(--gold);margin-bottom:14px}
+    .item h3{color:var(--gold-2);font-size:16px;letter-spacing:2px;text-transform:uppercase}
+    .item .desc{color:var(--muted);font-size:12px;line-height:1.6;margin:8px 0 14px}
+    .item .price{color:var(--gold);font-weight:700;font-size:18px}
+    .item .price small{color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LEAGUE <span>OF LEGENDS</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="inventario.html">Inventario</a></li><li><a href="perfil.html">Campeón</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="eventos.html">Eventos</a></li>
+      <li><a href="reservas.html">Reservas</a></li><li><a href="historial.html">Historial</a></li>
+      <li><a href="configuracion.html">Config</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">Control de <b>Inventario</b></h1>
+    <p class="page-sub">— Tienda de Objetos · Grieta del Invocador —</p>
+
+    <div class="filters">
+      <button class="chip on" onclick="filter('all',this)">Todos</button>
+      <button class="chip" onclick="filter('espada',this)">Espadas</button>
+      <button class="chip" onclick="filter('armadura',this)">Armaduras</button>
+      <button class="chip" onclick="filter('magico',this)">Mágicos</button>
+      <button class="chip" onclick="filter('bota',this)">Botas</button>
+    </div>
+
+    <div class="item-grid" id="items"></div>
+  </div>
+
+  <footer>© 2025 — Inventario de Objetos LoL</footer>
+  <script src="js/app.js"></script>
+  <script>
+    const objetos = [
+      { tipo:'espada',  ico:'⚔', name:'Filo Infinito',     desc:'+70 Daño de ataque · Probabilidad crítica masiva.', precio:3400 },
+      { tipo:'espada',  ico:'⚔', name:'Hoja de Doran',      desc:'+8 AD · +80 vida. Objeto de inicio para tiradores.', precio:450 },
+      { tipo:'armadura',ico:'🛡', name:'Cota de Mallas',     desc:'+30 armadura. Protección frente a daño físico.',     precio:800 },
+      { tipo:'armadura',ico:'🛡', name:'Velo de la Bruja',   desc:'+40 resistencia mágica · escudo mágico activo.',    precio:2800 },
+      { tipo:'magico',  ico:'🔮', name:'Báculo del Vacío',    desc:'+70 poder de habilidad · 40% penetración mágica.',  precio:2800 },
+      { tipo:'magico',  ico:'🔮', name:'Sombrero de Rabadon', desc:'+120 poder de habilidad · multiplicador x1.4.',     precio:3600 },
+      { tipo:'bota',    ico:'👢', name:'Botas Mercurio',     desc:'+45 movimiento · resistencia mágica · tenacidad.',   precio:1100 },
+      { tipo:'bota',    ico:'👢', name:'Botas de Berserker', desc:'+45 movimiento · 35% velocidad de ataque.',          precio:1100 },
+      { tipo:'espada',  ico:'⚔', name:'Cuchilla del Rey',    desc:'+55 AD · daño verdadero contra objetivos sanos.',    precio:3300 }
+    ];
+
+    function render(list) {
+      document.getElementById('items').innerHTML = list.map(o => `
+        <div class="item">
+          <div class="item-img">${o.ico}</div>
+          <h3>${o.name}</h3>
+          <p class="desc">${o.desc}</p>
+          <div class="price">${o.precio} <small>oro</small></div>
+        </div>`).join('');
+    }
+    function filter(t, btn) {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+      btn.classList.add('on');
+      render(t === 'all' ? objetos : objetos.filter(o => o.tipo === t));
+    }
+    render(objetos);
+  </script>
+</body>
+</html>

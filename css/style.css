@@ -1,0 +1,142 @@
+/* ============================================
+   LEAGUE OF LEGENDS - ESTILOS GLOBALES
+   ============================================ */
+:root{
+  --bg:#010a13;
+  --bg-2:#091428;
+  --bg-3:#0a1428;
+  --panel:#0a1c2e;
+  --gold:#c8aa6e;
+  --gold-2:#f0e6d2;
+  --gold-dark:#785a28;
+  --blue:#0397ab;
+  --blue-2:#0ac8b9;
+  --red:#c8323c;
+  --green:#3cae3c;
+  --text:#cdbe91;
+  --muted:#a09b8c;
+  --border:#1e2328;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Spiegel','Trebuchet MS',Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  background-image:
+    radial-gradient(circle at 20% 0%,rgba(3,151,171,.08),transparent 50%),
+    radial-gradient(circle at 80% 100%,rgba(200,170,110,.06),transparent 50%);
+  background-attachment:fixed;
+  min-height:100vh;
+}
+@font-face{font-family:'Spiegel';src:local('Trebuchet MS')}
+
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold-2)}
+
+/* NAVBAR */
+.navbar{
+  background:linear-gradient(180deg,#091428 0%,#0a1428 100%);
+  border-bottom:1px solid var(--gold-dark);
+  padding:14px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 20px rgba(0,0,0,.5);
+}
+.navbar .logo{
+  font-size:22px;font-weight:800;letter-spacing:4px;
+  color:var(--gold-2);text-transform:uppercase;
+}
+.navbar .logo span{color:var(--gold)}
+.nav-links{display:flex;gap:6px;list-style:none;flex-wrap:wrap}
+.nav-links a{
+  padding:8px 14px;font-size:12px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text);
+  border-bottom:2px solid transparent;transition:.2s;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:var(--gold-2);border-bottom-color:var(--gold);
+}
+
+/* CONTENEDORES */
+.container{max-width:1280px;margin:0 auto;padding:40px 24px}
+.page-title{
+  font-size:34px;letter-spacing:6px;text-transform:uppercase;
+  color:var(--gold-2);font-weight:300;margin-bottom:6px;
+}
+.page-title b{font-weight:800;color:var(--gold)}
+.page-sub{color:var(--muted);margin-bottom:32px;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-dark),transparent);margin:24px 0}
+
+/* BOTONES (estilo hextech LoL) */
+.btn{
+  display:inline-block;padding:12px 28px;
+  background:linear-gradient(180deg,#1e2328,#0a1428);
+  border:2px solid var(--gold-dark);color:var(--gold-2);
+  font-family:inherit;font-size:12px;letter-spacing:3px;
+  text-transform:uppercase;cursor:pointer;
+  position:relative;transition:.25s;
+  clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+}
+.btn:hover{border-color:var(--gold);color:#fff;box-shadow:0 0 20px rgba(200,170,110,.3)}
+.btn-primary{
+  background:linear-gradient(180deg,var(--gold-dark),#463714);
+  color:var(--gold-2);
+}
+.btn-primary:hover{background:linear-gradient(180deg,var(--gold),var(--gold-dark))}
+
+/* CARDS */
+.card{
+  background:linear-gradient(180deg,#0a1c2e,#091428);
+  border:1px solid var(--border);
+  border-top:1px solid var(--gold-dark);
+  padding:22px;position:relative;
+}
+.card::before,.card::after{
+  content:'';position:absolute;width:14px;height:14px;border:1px solid var(--gold);
+}
+.card::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.card::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+/* INPUTS */
+input,select,textarea{
+  width:100%;padding:12px 14px;background:#0a1428;
+  border:1px solid var(--gold-dark);color:var(--gold-2);
+  font-family:inherit;font-size:14px;outline:none;transition:.2s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,170,110,.15)}
+label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--gold-dark);
+  padding:24px;text-align:center;color:var(--muted);
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-top:60px;
+}
+
+/* TEMA CLARO */
+body.light{
+  --bg:#f3ece0;--bg-2:#e8dfc9;--bg-3:#ddd3bb;
+  --panel:#fff;--text:#3c3424;--muted:#6b624c;
+  --border:#d4c8a8;--gold-2:#3c3424;
+}
+body.light .navbar{background:linear-gradient(180deg,#fff,#f3ece0);}
+body.light .card{background:#fff}
+
+/* UTILIDADES */
+.grid{display:grid;gap:20px}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){
+  .grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}
+  .navbar{padding:14px 20px;flex-direction:column;gap:10px}
+}
+@media(max-width:600px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .page-title{font-size:24px;letter-spacing:3px}
+}
+
+.badge{display:inline-block;padding:4px 10px;font-size:10px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold-dark);color:var(--gold)}
+.badge-win{border-color:var(--green);color:var(--green)}
+.badge-lose{border-color:var(--red);color:var(--red)}

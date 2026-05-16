@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Configuración - LoL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .settings{max-width:720px;margin:0 auto;display:grid;gap:18px}
+    .opt{display:flex;justify-content:space-between;align-items:center;padding:20px;background:linear-gradient(180deg,#0a1c2e,#091428);border:1px solid var(--gold-dark)}
+    .opt h3{color:var(--gold-2);letter-spacing:2px;text-transform:uppercase;font-size:14px}
+    .opt p{color:var(--muted);font-size:12px;margin-top:4px}
+    .switch{position:relative;width:54px;height:28px;background:#1e2328;border:1px solid var(--gold-dark);cursor:pointer;transition:.2s}
+    .switch i{position:absolute;top:2px;left:2px;width:22px;height:22px;background:var(--gold);transition:.2s}
+    .switch.on{background:var(--gold-dark)}
+    .switch.on i{left:28px;background:var(--gold-2)}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LEAGUE <span>OF LEGENDS</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="inventario.html">Inventario</a></li><li><a href="perfil.html">Campeón</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="eventos.html">Eventos</a></li>
+      <li><a href="reservas.html">Reservas</a></li><li><a href="historial.html">Historial</a></li>
+      <li><a href="configuracion.html">Config</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">Configuración del <b>Sistema</b></h1>
+    <p class="page-sub">— Ajustes del invocador —</p>
+
+    <div class="settings">
+      <div class="opt">
+        <div><h3>Tema claro / oscuro</h3><p>Cambiar el aspecto visual de la página</p></div>
+        <div class="switch" id="sw-theme" onclick="this.classList.toggle('on');toggleTheme()"><i></i></div>
+      </div>
+
+      <div class="opt">
+        <div><h3>Sonidos del sistema</h3><p>Activar efectos de sonido al interactuar</p></div>
+        <div class="switch on" onclick="this.classList.toggle('on');toast('Configuración guardada')"><i></i></div>
+      </div>
+
+      <div class="opt">
+        <div><h3>Notificaciones de eventos</h3><p>Recibir avisos de torneos y parches</p></div>
+        <div class="switch on" onclick="this.classList.toggle('on');toast('Configuración guardada')"><i></i></div>
+      </div>
+
+      <div class="opt" style="display:block">
+        <h3 style="margin-bottom:12px">Idioma</h3>
+        <select onchange="toast('Idioma cambiado')">
+          <option>Español (Latinoamérica)</option>
+          <option>Español (España)</option>
+          <option>English (US)</option>
+          <option>Português (Brasil)</option>
+        </select>
+      </div>
+
+      <div class="opt" style="display:block">
+        <h3 style="margin-bottom:12px">Servidor preferido</h3>
+        <select onchange="toast('Servidor actualizado')">
+          <option>LAS — Latinoamérica Sur</option>
+          <option>LAN — Latinoamérica Norte</option>
+          <option>NA — Norteamérica</option>
+          <option>EUW — Europa Oeste</option>
+          <option>KR — Corea</option>
+        </select>
+      </div>
+
+      <div style="text-align:center;margin-top:10px">
+        <button class="btn btn-primary" onclick="toast('Ajustes guardados')">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2025 — Configuración del Sistema</footer>
+  <script src="js/app.js"></script>
+  <script>
+    // Sincronizar el switch de tema con el estado al cargar
+    if (document.body.classList.contains('light'))
+      document.getElementById('sw-theme').classList.add('on');
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Galería - LoL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+    .chip{padding:8px 18px;border:1px solid var(--gold-dark);color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;background:transparent;font-family:inherit;transition:.2s}
+    .chip:hover,.chip.on{background:var(--gold-dark);color:var(--gold-2)}
+    .search{margin-bottom:20px;max-width:400px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+    .champ{position:relative;aspect-ratio:3/4;background:linear-gradient(180deg,var(--blue),#091428);border:1px solid var(--gold-dark);overflow:hidden;cursor:pointer;transition:.25s;display:flex;align-items:flex-end;padding:14px}
+    .champ:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 12px 30px rgba(0,0,0,.6)}
+    .champ .big{position:absolute;top:14px;right:14px;font-size:90px;font-weight:900;color:var(--gold);opacity:.25;line-height:1}
+    .champ::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.85));pointer-events:none}
+    .champ .lbl{position:relative;z-index:2}
+    .champ .name{color:var(--gold-2);font-size:15px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+    .champ .role{color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LEAGUE <span>OF LEGENDS</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="inventario.html">Inventario</a></li><li><a href="perfil.html">Campeón</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="eventos.html">Eventos</a></li>
+      <li><a href="reservas.html">Reservas</a></li><li><a href="historial.html">Historial</a></li>
+      <li><a href="configuracion.html">Config</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">Galería de <b>Campeones</b></h1>
+    <p class="page-sub">— Catálogo completo · 168 campeones —</p>
+
+    <div class="search"><input id="q" placeholder="Buscar campeón..." oninput="render()"></div>
+
+    <div class="filters" id="filters">
+      <button class="chip on" data-rol="all">Todos</button>
+      <button class="chip" data-rol="Top">Top</button>
+      <button class="chip" data-rol="Jungla">Jungla</button>
+      <button class="chip" data-rol="Mid">Mid</button>
+      <button class="chip" data-rol="ADC">ADC</button>
+      <button class="chip" data-rol="Soporte">Soporte</button>
+    </div>
+
+    <div class="gallery" id="grid"></div>
+  </div>
+
+  <footer>© 2025 — Galería de Campeones LoL</footer>
+  <script src="js/app.js"></script>
+  <script>
+    const champs = [
+      { n:'Yasuo',rol:'Mid'},{n:'Ahri',rol:'Mid'},{n:'Lee Sin',rol:'Jungla'},
+      { n:'Jinx',rol:'ADC'},{n:'Thresh',rol:'Soporte'},{n:'Garen',rol:'Top'},
+      { n:'Zed',rol:'Mid'},{n:'Lux',rol:'Soporte'},{n:'Akali',rol:'Mid'},
+      { n:'Darius',rol:'Top'},{n:'Caitlyn',rol:'ADC'},{n:'Vayne',rol:'ADC'},
+      { n:'Ezreal',rol:'ADC'},{n:'Master Yi',rol:'Jungla'},{n:'Sett',rol:'Top'},
+      { n:'Riven',rol:'Top'},{n:'Diana',rol:'Jungla'},{n:'Senna',rol:'Soporte'},
+      { n:'Pyke',rol:'Soporte'},{n:'Kaisa',rol:'ADC'},{n:'Yone',rol:'Mid'},
+      { n:'Viego',rol:'Jungla'},{n:'Aatrox',rol:'Top'},{n:'Sona',rol:'Soporte'}
+    ];
+    let activeRol = 'all';
+
+    function render() {
+      const q = document.getElementById('q').value.toLowerCase();
+      const list = champs.filter(c =>
+        (activeRol === 'all' || c.rol === activeRol) &&
+        c.n.toLowerCase().includes(q)
+      );
+      document.getElementById('grid').innerHTML = list.map(c => `
+        <a href="perfil.html" class="champ">
+          <span class="big">${c.n[0]}</span>
+          <div class="lbl"><div class="name">${c.n}</div><div class="role">${c.rol}</div></div>
+        </a>`).join('') || '<p style="color:var(--muted);grid-column:1/-1;text-align:center;padding:40px">Sin resultados</p>';
+    }
+
+    document.getElementById('filters').addEventListener('click', e => {
+      const b = e.target.closest('.chip');
+      if (!b) return;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+      b.classList.add('on');
+      activeRol = b.dataset.rol;
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>

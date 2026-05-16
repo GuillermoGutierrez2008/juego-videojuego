@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Historial - LoL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .match{display:grid;grid-template-columns:80px 1fr auto auto;gap:18px;align-items:center;padding:16px 20px;background:linear-gradient(180deg,#0a1c2e,#091428);border:1px solid var(--border);border-left:5px solid var(--green);margin-bottom:10px}
+    .match.lose{border-left-color:var(--red)}
+    .match .ico{width:60px;height:60px;background:linear-gradient(135deg,var(--blue),var(--gold-dark));display:grid;place-items:center;color:var(--gold-2);font-size:22px;font-weight:800;border:2px solid var(--gold)}
+    .match .info h3{color:var(--gold-2);font-size:15px;letter-spacing:2px;text-transform:uppercase}
+    .match .info p{color:var(--muted);font-size:12px;margin-top:3px}
+    .match .kda{color:var(--gold);font-weight:700;font-size:18px;text-align:center}
+    .match .kda small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:400;margin-top:2px}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+    @media(max-width:700px){.summary{grid-template-columns:repeat(2,1fr)}.match{grid-template-columns:60px 1fr;gap:12px}.match .kda{display:none}}
+    .sum{padding:18px;border:1px solid var(--gold-dark);background:#0a1428;text-align:center}
+    .sum .v{font-size:28px;color:var(--gold);font-weight:300}
+    .sum .l{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LEAGUE <span>OF LEGENDS</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="inventario.html">Inventario</a></li><li><a href="perfil.html">Campeón</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="eventos.html">Eventos</a></li>
+      <li><a href="reservas.html">Reservas</a></li><li><a href="historial.html">Historial</a></li>
+      <li><a href="configuracion.html">Config</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">Historial de <b>Partidas</b></h1>
+    <p class="page-sub">— Últimos enfrentamientos en la Grieta —</p>
+
+    <div class="summary">
+      <div class="sum"><div class="v">10</div><div class="l">Partidas</div></div>
+      <div class="sum"><div class="v" style="color:var(--green)">7</div><div class="l">Victorias</div></div>
+      <div class="sum"><div class="v" style="color:var(--red)">3</div><div class="l">Derrotas</div></div>
+      <div class="sum"><div class="v">70%</div><div class="l">Win Rate</div></div>
+    </div>
+
+    <div id="history"></div>
+  </div>
+
+  <footer>© 2025 — Historial de Movimientos LoL</footer>
+  <script src="js/app.js"></script>
+  <script>
+    const partidas = [
+      { res:'win',  champ:'Yasuo',   ico:'Y', rol:'Mid',     k:12,d:4, a:8,  fecha:'Hoy · 14:32',     dur:'28 min' },
+      { res:'win',  champ:'Ahri',    ico:'A', rol:'Mid',     k:9, d:2, a:11, fecha:'Hoy · 13:50',     dur:'24 min' },
+      { res:'lose', champ:'Lee Sin', ico:'L', rol:'Jungla',  k:5, d:8, a:7,  fecha:'Ayer · 22:14',    dur:'35 min' },
+      { res:'win',  champ:'Jinx',    ico:'J', rol:'ADC',     k:14,d:3, a:6,  fecha:'Ayer · 21:30',    dur:'31 min' },
+      { res:'win',  champ:'Thresh',  ico:'T', rol:'Soporte', k:2, d:5, a:18, fecha:'Ayer · 20:55',    dur:'29 min' },
+      { res:'lose', champ:'Garen',   ico:'G', rol:'Top',     k:3, d:7, a:4,  fecha:'12 May · 19:12',  dur:'33 min' },
+      { res:'win',  champ:'Zed',     ico:'Z', rol:'Mid',     k:11,d:5, a:5,  fecha:'12 May · 18:30',  dur:'26 min' },
+      { res:'win',  champ:'Lux',     ico:'L', rol:'Soporte', k:4, d:3, a:14, fecha:'11 May · 23:01',  dur:'30 min' },
+      { res:'lose', champ:'Akali',   ico:'A', rol:'Mid',     k:6, d:9, a:3,  fecha:'11 May · 22:10',  dur:'37 min' },
+      { res:'win',  champ:'Yasuo',   ico:'Y', rol:'Mid',     k:15,d:4, a:9,  fecha:'10 May · 20:45',  dur:'27 min' }
+    ];
+
+    document.getElementById('history').innerHTML = partidas.map(p => `
+      <div class="match ${p.res === 'lose' ? 'lose' : ''}">
+        <div class="ico">${p.ico}</div>
+        <div class="info">
+          <h3>${p.champ} <span class="badge ${p.res === 'win' ? 'badge-win' : 'badge-lose'}">${p.res === 'win' ? 'Victoria' : 'Derrota'}</span></h3>
+          <p>${p.rol} · ${p.fecha} · ${p.dur}</p>
+        </div>
+        <div class="kda">${p.k} / ${p.d} / ${p.a}<small>KDA</small></div>
+        <div class="kda">${((p.k + p.a) / Math.max(p.d, 1)).toFixed(2)}<small>Ratio</small></div>
+      </div>
+    `).join('');
+  </script>
+</body>
+</html>

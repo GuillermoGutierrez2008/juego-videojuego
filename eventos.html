@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Eventos - LoL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .cal-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    .cal-bar h2{color:var(--gold-2);letter-spacing:4px;text-transform:uppercase;font-weight:300}
+    .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;background:#0a1428;padding:14px;border:1px solid var(--gold-dark)}
+    .cal-head{text-align:center;padding:10px;color:var(--gold);font-size:11px;letter-spacing:2px;border-bottom:1px solid var(--gold-dark)}
+    .cal-day{aspect-ratio:1;padding:8px;border:1px solid #1e2328;color:var(--muted);font-size:13px;display:flex;flex-direction:column;justify-content:space-between}
+    .cal-day.has-event{border-color:var(--gold);background:rgba(200,170,110,.1);color:var(--gold-2);cursor:pointer}
+    .cal-day.has-event small{font-size:9px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;line-height:1.2}
+    .cal-day.tipo-worlds{background:rgba(200,50,60,.15);border-color:var(--red)}
+    .cal-day.tipo-parche{background:rgba(3,151,171,.15);border-color:var(--blue-2)}
+    .upcoming{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .ev-card{padding:20px;background:linear-gradient(180deg,#0a1c2e,#091428);border:1px solid var(--gold-dark);border-left:4px solid var(--gold)}
+    .ev-card .date{font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+    .ev-card h3{color:var(--gold-2);margin:6px 0;letter-spacing:1px}
+    .ev-card p{color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LEAGUE <span>OF LEGENDS</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="inventario.html">Inventario</a></li><li><a href="perfil.html">Campeón</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="eventos.html">Eventos</a></li>
+      <li><a href="reservas.html">Reservas</a></li><li><a href="historial.html">Historial</a></li>
+      <li><a href="configuracion.html">Config</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">Calendario de <b>Eventos</b></h1>
+    <p class="page-sub">— Worlds · Clash · Parches · Eventos especiales —</p>
+
+    <div class="cal-bar">
+      <button class="btn" onclick="changeMonth(-1)">‹ Anterior</button>
+      <h2 id="calTitle"></h2>
+      <button class="btn" onclick="changeMonth(1)">Siguiente ›</button>
+    </div>
+
+    <div class="cal" id="calendar"></div>
+
+    <h2 style="color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin:40px 0 0;font-size:16px">Próximos eventos</h2>
+    <div class="upcoming">
+      <div class="ev-card"><div class="date">18 Mayo 2025</div><h3>Clash Weekend</h3><p>Torneo competitivo de fin de semana en equipos de 5.</p></div>
+      <div class="ev-card"><div class="date">22 Mayo 2025</div><h3>Parche 15.10</h3><p>Cambios de balance y nueva apariencia legendaria.</p></div>
+      <div class="ev-card"><div class="date">25 Mayo 2025</div><h3>Soul Fighter</h3><p>Evento temático con misiones y pase exclusivo.</p></div>
+      <div class="ev-card"><div class="date">5 Junio 2025</div><h3>MSI Finals</h3><p>Mid-Season Invitational — final internacional en Vancouver.</p></div>
+      <div class="ev-card" style="border-left-color:var(--red)"><div class="date">25 Sept 2025</div><h3>Worlds 2025</h3><p>El campeonato mundial empieza. Fase de juego: China.</p></div>
+    </div>
+  </div>
+
+  <footer>© 2025 — Calendario de Eventos LoL</footer>
+  <script src="js/app.js"></script>
+  <script src="js/calendario.js"></script>
+</body>
+</html>

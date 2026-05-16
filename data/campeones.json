@@ -1,0 +1,8 @@
+[
+  { "id": "yasuo",   "nombre": "Yasuo",   "rol": "Mid",    "dificultad": "Alta" },
+  { "id": "ahri",    "nombre": "Ahri",    "rol": "Mid",    "dificultad": "Media" },
+  { "id": "leesin",  "nombre": "Lee Sin", "rol": "Jungla", "dificultad": "Alta" },
+  { "id": "jinx",    "nombre": "Jinx",    "rol": "ADC",    "dificultad": "Media" },
+  { "id": "thresh",  "nombre": "Thresh",  "rol": "Soporte","dificultad": "Alta" },
+  { "id": "garen",   "nombre": "Garen",   "rol": "Top",    "dificultad": "Baja" }
+]

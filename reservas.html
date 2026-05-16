@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Reservas - LoL</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .form-wrap{max-width:680px;margin:0 auto;padding:34px;background:linear-gradient(180deg,#0a1c2e,#091428);border:1px solid var(--gold-dark)}
+    .form-wrap h2{color:var(--gold-2);letter-spacing:3px;text-transform:uppercase;font-weight:300;text-align:center;margin-bottom:6px}
+    .form-wrap h2 b{color:var(--gold)}
+    .form-wrap .sub{text-align:center;color:var(--muted);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px}
+    .field{margin-bottom:18px}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:500px){.row2{grid-template-columns:1fr}}
+    .check{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+    .check input{width:auto}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">LEAGUE <span>OF LEGENDS</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="inventario.html">Inventario</a></li><li><a href="perfil.html">Campeón</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="eventos.html">Eventos</a></li>
+      <li><a href="reservas.html">Reservas</a></li><li><a href="historial.html">Historial</a></li>
+      <li><a href="configuracion.html">Config</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1 class="page-title">Inscripción a <b>Torneo</b></h1>
+    <p class="page-sub">— Reservá tu lugar en el próximo Clash —</p>
+
+    <form class="form-wrap" onsubmit="event.preventDefault();toast('Inscripción enviada · revisá tu correo');this.reset()">
+      <h2>Formulario de <b>Reservas</b></h2>
+      <p class="sub">Completá los datos del invocador</p>
+
+      <div class="row2">
+        <div class="field"><label>Nombre del invocador</label><input required placeholder="Ej. ProPlayer123"></div>
+        <div class="field"><label>Email</label><input type="email" required placeholder="invocador@correo.com"></div>
+      </div>
+
+      <div class="row2">
+        <div class="field"><label>Servidor</label>
+          <select required>
+            <option value="">— Elegí servidor —</option>
+            <option>LAS · Latinoamérica Sur</option>
+            <option>LAN · Latinoamérica Norte</option>
+            <option>NA · Norteamérica</option>
+            <option>EUW · Europa Oeste</option>
+            <option>KR · Corea</option>
+            <option>BR · Brasil</option>
+          </select>
+        </div>
+        <div class="field"><label>Campeón favorito</label>
+          <select required>
+            <option value="">— Elegí campeón —</option>
+            <option>Yasuo</option><option>Ahri</option><option>Lee Sin</option>
+            <option>Jinx</option><option>Thresh</option><option>Garen</option>
+            <option>Zed</option><option>Lux</option><option>Akali</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field"><label>Rango actual</label>
+          <select>
+            <option>Hierro</option><option>Bronce</option><option>Plata</option>
+            <option>Oro</option><option>Platino</option><option>Esmeralda</option>
+            <option>Diamante</option><option>Maestro</option><option>Gran Maestro</option>
+          </select>
+        </div>
+        <div class="field"><label>Rol principal</label>
+          <select>
+            <option>Top</option><option>Jungla</option><option>Mid</option>
+            <option>ADC</option><option>Soporte</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field"><label>Mensaje (opcional)</label>
+        <textarea rows="3" placeholder="Comentarios sobre tu equipo, disponibilidad..."></textarea>
+      </div>
+
+      <div class="field check">
+        <input type="checkbox" required id="tos">
+        <label for="tos" style="margin:0;text-transform:none;letter-spacing:0;font-size:12px;color:var(--muted)">Acepto el reglamento del torneo y el código del invocador.</label>
+      </div>
+
+      <div style="text-align:center;margin-top:24px">
+        <button type="submit" class="btn btn-primary">Inscribirme</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>© 2025 — Reservas y Torneos LoL</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
